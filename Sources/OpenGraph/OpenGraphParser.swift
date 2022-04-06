@@ -57,7 +57,9 @@ extension OpenGraphParser {
                 return (name: property, content: content)
             }()
             if let property = property, let metadata = OpenGraphMetadata(rawValue: property.name) {
-                copiedAttributes[metadata] = property.content
+                if copiedAttributes[metadata] == nil {
+                    copiedAttributes[metadata] = property.content
+                }
             }
             return copiedAttributes
         }
